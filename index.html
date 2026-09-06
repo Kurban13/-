@@ -1,0 +1,1212 @@
+<meta charset="utf-8">
+<title>Страна гор Дагестан</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Golos+Text:wght@400..900&display=swap">
+<style>
+:root{
+  --niello:#171319; --ink:#0C080E;
+  --indigo:#16305A; --indigo-deep:#0C1B36; --plum:#5A2547;
+  --madder:#A81E23; --madder-deep:#7A1418;
+  --saffron:#E2A32E; --gold:#F3CE83; --gold-dim:#B8914A;
+  --caspian:#0E6360; --caspian-lt:#3FB3A8;
+  --parchment:#EFE0C4; --parchment-2:#E3CFA9;
+  --silver:#C9CCD3; --silver-hi:#F2F3F6; --silver-lo:#8A909E;
+  --f-display:"Forum","Palatino Linotype",Georgia,serif;
+  --f-text:"Golos Text","Helvetica Neue",Arial,sans-serif;
+  --pad:clamp(20px,4.2vw,72px);
+  --rule:1px solid color-mix(in srgb,var(--gold) 34%,transparent);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--parchment);
+  font-family:var(--f-text);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.deck{height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none}
+.deck::-webkit-scrollbar{display:none}
+body.locked .deck{overflow:hidden}
+
+/* ── слои слайда ─────────────────────────────────────────── */
+.slide{scroll-snap-align:start;scroll-snap-stop:always;min-height:100dvh;position:relative;isolation:isolate;
+  display:grid;align-content:center;padding:clamp(44px,6.5vh,84px) var(--pad) clamp(52px,7vh,92px);overflow:hidden}
+.scene{position:absolute;inset:0;z-index:-3;width:100%;height:100%;display:block}
+.weave{position:absolute;inset:0;z-index:-2;pointer-events:none}
+.scrim{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.slide > .layer{position:relative}
+
+.s1 .scrim{background:radial-gradient(75% 62% at 50% 46%,rgba(12,8,14,.86) 0%,rgba(12,8,14,.62) 55%,rgba(12,8,14,.88) 100%)}
+.s2{color:#2A1A16}
+.s2 .scrim{background:linear-gradient(172deg,rgba(239,224,196,.955) 0%,rgba(233,214,180,.9) 58%,rgba(214,190,149,.93) 100%)}
+.s3 .scrim{background:linear-gradient(100deg,rgba(20,10,26,.95) 0%,rgba(24,12,32,.86) 46%,rgba(12,16,38,.8) 100%)}
+.s4 .scrim{background:linear-gradient(165deg,rgba(24,19,26,.9) 0%,rgba(12,8,14,.86) 55%,rgba(8,5,10,.94) 100%)}
+.s5 .scrim{background:linear-gradient(200deg,rgba(9,48,58,.86) 0%,rgba(8,30,48,.88) 45%,rgba(9,14,32,.93) 100%)}
+
+/* ── типографика ─────────────────────────────────────────── */
+.kicker{font-family:var(--f-display);font-size:clamp(12px,1.1vw,16px);letter-spacing:.34em;color:var(--saffron);margin:0 0 .9rem}
+.s2 .kicker{color:var(--madder)}
+h1{font-family:var(--f-display);font-weight:400;margin:0;font-size:clamp(40px,4.6vw,71px);line-height:.92;letter-spacing:.02em;text-wrap:balance}
+h2{font-family:var(--f-display);font-weight:400;margin:0 0 .3em;font-size:clamp(32px,5vw,70px);line-height:1;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:400;margin:0;font-size:clamp(19px,2vw,29px);line-height:1.12}
+p{margin:0;max-width:62ch}
+.lede{font-size:clamp(14px,1.3vw,19px);line-height:1.6;color:color-mix(in srgb,var(--parchment) 88%,transparent)}
+.s2 .lede{color:#4A342B}
+.engraved{color:var(--gold);text-shadow:0 2px 0 rgba(0,0,0,.6),0 -1px 0 rgba(255,236,190,.28),0 14px 34px rgba(0,0,0,.55)}
+.chiseled{color:#3E2119;text-shadow:0 1px 0 rgba(255,255,255,.75),0 -1px 1px rgba(120,70,40,.35)}
+
+/* ── 1. титул ────────────────────────────────────────────── */
+.hero{display:grid;justify-items:center;text-align:center;gap:clamp(16px,2.2vh,28px)}
+.medallion{--ring:clamp(280px,32vw,480px);width:var(--ring);height:var(--ring);min-width:0;min-height:0;display:grid;place-items:center;
+  border-radius:50%;padding:clamp(20px,2.8vw,36px);
+  background:radial-gradient(circle at 38% 26%,rgba(243,206,131,.2),transparent 58%),
+    conic-gradient(from 210deg,#6B5326,#F3CE83 12%,#8A6C31 26%,#FBE6B4 40%,#5E4720 55%,#E2A32E 72%,#7A5E2A 88%,#6B5326);
+  box-shadow:0 0 0 1px rgba(243,206,131,.5),
+    inset 0 0 0 clamp(9px,1.3vw,17px) var(--niello),
+    inset 0 0 0 calc(clamp(9px,1.3vw,17px) + 1px) rgba(243,206,131,.55),
+    0 46px 90px -30px rgba(0,0,0,.92),0 8px 26px rgba(0,0,0,.6);
+  transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+  transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.medallion-inner{width:100%;height:100%;border-radius:50%;display:grid;place-content:center;gap:.4rem;text-align:center;padding:0 12%;
+  background:radial-gradient(circle at 50% 34%,#3B2C46 0%,var(--niello) 62%,#0D090F 100%);
+  box-shadow:inset 0 18px 46px rgba(0,0,0,.8),inset 0 -10px 30px rgba(243,206,131,.07)}
+.med-sub{font-family:var(--f-display);font-size:clamp(10px,1vw,14px);letter-spacing:.4em;color:var(--saffron);margin:0}
+.med-note{font-size:clamp(11px,.95vw,13px);color:var(--silver-lo);margin:.5rem 0 0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));width:min(1080px,100%);
+  border-top:var(--rule);border-bottom:var(--rule)}
+.fact{padding:clamp(10px,1.6vh,18px) 12px;text-align:center;border-left:var(--rule)}
+.fact:first-child{border-left:0}
+.fact b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(22px,2.5vw,36px);color:var(--gold);font-variant-numeric:tabular-nums}
+.fact span{font-size:clamp(10px,.88vw,12px);color:var(--silver-lo);letter-spacing:.06em}
+
+/* ── 2. история ──────────────────────────────────────────── */
+.head-2{display:flex;flex-wrap:wrap;align-items:flex-end;gap:clamp(14px,2.5vw,40px);margin-bottom:clamp(16px,2.8vh,32px)}
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));column-gap:clamp(24px,4vw,60px);max-width:1260px}
+.ev{width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(122,20,24,.22);
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(10px,1.3vw,18px);
+  padding:clamp(8px,1.25vh,14px) 6px clamp(8px,1.25vh,14px) 0;cursor:pointer;font:inherit;color:inherit;
+  transition:background .2s ease}
+.ev:hover,.ev:focus-visible{background:rgba(122,20,24,.07)}
+.ev time{font-family:var(--f-display);font-size:clamp(14px,1.3vw,19px);color:var(--madder-deep);
+  white-space:nowrap;font-variant-numeric:tabular-nums;padding-top:.12em;min-width:clamp(70px,6.8vw,100px)}
+.ev p{font-size:clamp(12.5px,1.02vw,15px);color:#3E2A22;line-height:1.48}
+.ev strong{color:#22120E;font-weight:600}
+.ev .more{display:none;margin-top:.5em;font-size:clamp(12px,.97vw,14px);color:#5A3A2C;border-left:2px solid var(--madder);padding-left:12px}
+.ev[aria-expanded="true"] .more{display:block}
+.ev[aria-expanded="true"]{background:rgba(122,20,24,.09)}
+
+/* ── 3. народы ───────────────────────────────────────────── */
+.split{display:grid;grid-template-columns:minmax(270px,.82fr) 1.3fr;gap:clamp(24px,3.8vw,68px);align-items:start;max-width:1340px}
+.stat-col{display:grid;gap:clamp(12px,1.8vh,20px)}
+.stat{border-left:3px solid var(--saffron);padding-left:15px}
+.stat b{display:block;font-family:var(--f-display);font-size:clamp(27px,3.1vw,46px);color:var(--gold);line-height:1}
+.stat span{font-size:12.5px;color:color-mix(in srgb,var(--parchment) 72%,transparent)}
+.peoples{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(14px,2.2vh,22px)}
+.chip{font-family:var(--f-display);font-size:clamp(13px,1.2vw,18px);line-height:1;padding:.55em .85em;border:0;border-radius:2px;
+  color:#120C14;cursor:pointer;position:relative;
+  box-shadow:0 6px 16px -6px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.4);
+  transition:transform .18s cubic-bezier(.2,.7,.3,1),box-shadow .18s ease}
+.chip:hover,.chip:focus-visible{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 26px -8px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.55)}
+.chip::after{content:"→";margin-left:.5em;opacity:.45;font-family:var(--f-text)}
+.langs{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:2px 18px;
+  padding-top:clamp(14px,2.2vh,20px);border-top:var(--rule);font-size:clamp(11.5px,.98vw,13.5px);
+  color:color-mix(in srgb,var(--parchment) 74%,transparent)}
+
+/* ── 4. промыслы + 3D ────────────────────────────────────── */
+.craft-wrap{display:grid;grid-template-columns:minmax(300px,.9fr) 1.25fr;gap:clamp(22px,3.4vw,56px);align-items:center;max-width:1340px}
+.viewer{position:relative;aspect-ratio:1/.92;min-height:300px;
+  background:radial-gradient(circle at 50% 42%,rgba(243,206,131,.14),rgba(0,0,0,.5) 70%);
+  border:1px solid rgba(243,206,131,.28);
+  box-shadow:inset 0 1px 0 rgba(243,206,131,.3),0 40px 80px -40px #000;
+  touch-action:none;cursor:grab}
+.viewer.dragging{cursor:grabbing}
+.viewer canvas{display:block;width:100%;height:100%}
+.viewer .hint3d{position:absolute;left:14px;bottom:12px;font-size:11px;letter-spacing:.16em;color:rgba(243,206,131,.6);pointer-events:none}
+.no3d{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:24px;gap:8px;color:var(--silver-lo)}
+.objbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.objbtn{font-family:var(--f-display);font-size:13px;letter-spacing:.1em;padding:.55em .9em;cursor:pointer;
+  background:rgba(243,206,131,.07);border:1px solid rgba(243,206,131,.3);color:var(--gold);
+  transition:background .2s ease,border-color .2s ease}
+.objbtn:hover{background:rgba(243,206,131,.16)}
+.objbtn[aria-pressed="true"]{background:var(--gold);color:#1A1017;border-color:var(--gold)}
+.craft-info{display:grid;gap:clamp(10px,1.5vh,16px)}
+.craft-info .where{font-family:var(--f-display);font-size:12px;letter-spacing:.22em;color:var(--saffron)}
+.craft-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:clamp(8px,1.6vh,16px);
+  padding-top:clamp(12px,2vh,18px);border-top:var(--rule)}
+.craft-list div{font-size:12.5px;color:color-mix(in srgb,var(--parchment) 76%,transparent)}
+.craft-list b{display:block;font-family:var(--f-display);font-weight:400;font-size:16px;color:var(--gold)}
+
+/* ── 5. природа ──────────────────────────────────────────── */
+.two{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,72px);max-width:1340px;align-items:start}
+.nrow{width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(63,179,168,.28);
+  display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:16px;color:inherit;font:inherit;
+  padding:clamp(8px,1.35vh,14px) 6px;cursor:pointer;transition:background .2s ease,padding-left .2s ease}
+.nrow:hover,.nrow:focus-visible{background:rgba(63,179,168,.1);padding-left:12px}
+.nrow[aria-pressed="true"]{background:rgba(63,179,168,.16);padding-left:12px}
+.nrow[aria-pressed="true"] h3{color:var(--caspian-lt)}
+.nrow h3{font-size:clamp(16px,1.6vw,24px);color:var(--parchment)}
+.nrow small{display:block;font-family:var(--f-text);font-size:12px;color:rgba(233,244,241,.62);margin-top:.28em;max-width:44ch}
+.nrow .val{font-family:var(--f-display);font-size:clamp(17px,1.9vw,28px);color:var(--caspian-lt);white-space:nowrap;font-variant-numeric:tabular-nums}
+.culture{display:grid;gap:clamp(12px,1.8vh,18px);padding:clamp(18px,2.2vw,30px);
+  background:linear-gradient(160deg,rgba(233,244,241,.08),rgba(0,0,0,.3));
+  border:1px solid rgba(63,179,168,.32);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 60px -34px #000}
+.cult-item strong{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(16px,1.5vw,22px);color:var(--gold);margin-bottom:.15em}
+.cult-item p{font-size:clamp(12px,1vw,14px);color:rgba(233,244,241,.78)}
+.quote{font-family:var(--f-display);font-size:clamp(16px,1.6vw,24px);line-height:1.35;color:var(--parchment);
+  border-top:1px solid rgba(243,206,131,.34);padding-top:clamp(12px,1.8vh,16px)}
+.quote cite{display:block;font-family:var(--f-text);font-style:normal;font-size:12px;letter-spacing:.16em;color:var(--saffron);margin-top:.6em}
+
+/* ── слой народа ─────────────────────────────────────────── */
+.folio{position:fixed;inset:0;z-index:60;overflow-y:auto;background:var(--ink);
+  animation:folio-in .38s cubic-bezier(.2,.7,.3,1) both}
+.folio[hidden]{display:none!important}
+@keyframes folio-in{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+.folio-bg{position:fixed;inset:0;z-index:0}
+.folio-bg canvas{width:100%;height:100%;display:block}
+.folio-scrim{position:fixed;inset:0;z-index:1;
+  background:linear-gradient(105deg,rgba(10,7,12,.96) 0%,rgba(10,7,12,.9) 44%,rgba(10,7,12,.66) 100%)}
+.folio-in{position:relative;z-index:2;min-height:100dvh;display:grid;align-content:start;
+  gap:clamp(18px,2.6vh,30px);padding:clamp(56px,7vh,80px) var(--pad) clamp(90px,11vh,120px);max-width:1400px}
+.folio-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.folio-badge{width:44px;height:44px;transform:rotate(45deg);box-shadow:0 10px 24px -8px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.5)}
+.folio h2{margin:0}
+.folio .selfname{font-family:var(--f-display);font-size:clamp(15px,1.5vw,22px);color:var(--saffron);letter-spacing:.08em}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0;border-top:var(--rule);border-bottom:var(--rule)}
+.meta div{padding:clamp(11px,1.6vh,16px) 16px;border-left:var(--rule)}
+.meta div:first-child{border-left:0}
+.meta b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(18px,1.9vw,27px);color:var(--gold);line-height:1.1}
+.meta span{font-size:11px;letter-spacing:.1em;color:var(--silver-lo);text-transform:uppercase}
+.folio-body{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,3vw,48px)}
+.folio-body section{display:grid;gap:.55rem;align-content:start}
+.folio-body h3{color:var(--gold);border-bottom:1px solid rgba(243,206,131,.26);padding-bottom:.35em}
+.folio-body p{font-size:clamp(13px,1.06vw,15.5px);color:color-mix(in srgb,var(--parchment) 84%,transparent);line-height:1.62;max-width:56ch}
+.known{display:flex;flex-wrap:wrap;gap:8px}
+.known span{font-size:12px;padding:.42em .7em;border:1px solid rgba(243,206,131,.3);color:var(--gold);background:rgba(243,206,131,.06)}
+.folio-nav{position:fixed;left:0;right:0;bottom:0;z-index:70;display:flex;align-items:center;gap:10px;
+  padding:12px var(--pad);background:linear-gradient(0deg,rgba(10,7,12,.98),rgba(10,7,12,.72));
+  border-top:1px solid rgba(243,206,131,.22);flex-wrap:wrap}
+.fbtn{font-family:var(--f-display);font-size:13px;letter-spacing:.12em;padding:.6em 1.05em;cursor:pointer;
+  background:rgba(243,206,131,.08);border:1px solid rgba(243,206,131,.32);color:var(--gold);transition:background .2s ease}
+.fbtn:hover{background:rgba(243,206,131,.2)}
+.fbtn.primary{background:var(--gold);color:#1A1017}
+.folio-nav .spacer{flex:1}
+.folio-jump{display:flex;gap:6px;overflow-x:auto;max-width:100%;padding-bottom:2px}
+.folio-jump button{width:12px;height:12px;transform:rotate(45deg);border:1px solid rgba(243,206,131,.5);background:transparent;cursor:pointer;flex:0 0 auto}
+.folio-jump button[aria-current="true"]{background:var(--gold)}
+
+/* ── общая навигация ─────────────────────────────────────── */
+.thread{position:fixed;top:0;left:0;height:3px;z-index:50;width:var(--w,20%);
+  background:linear-gradient(90deg,var(--madder),var(--saffron),var(--gold));transition:width .35s ease}
+.rail{position:fixed;right:clamp(10px,1.5vw,24px);top:50%;transform:translateY(-50%);z-index:50;display:grid;gap:12px;margin:0;padding:0;list-style:none}
+.rail button{display:flex;align-items:center;gap:10px;background:none;border:0;padding:4px;cursor:pointer;color:inherit;
+  font-family:var(--f-display);font-size:11px;letter-spacing:.18em}
+.rail .dot{width:9px;height:9px;transform:rotate(45deg);background:transparent;border:1px solid rgba(226,163,46,.75);
+  transition:background .25s ease,box-shadow .25s ease}
+.rail .lbl{opacity:0;color:var(--saffron);transition:opacity .25s ease;white-space:nowrap}
+.rail button:hover .lbl,.rail button:focus-visible .lbl,.rail [aria-current="true"] .lbl{opacity:1}
+.rail [aria-current="true"] .dot{background:var(--gold);box-shadow:0 0 12px var(--saffron)}
+.hint{position:fixed;left:var(--pad);bottom:clamp(12px,2vh,22px);z-index:50;font-size:11px;letter-spacing:.2em;color:rgba(226,163,46,.62)}
+body.s2-active .rail .dot{border-color:rgba(122,20,24,.8)}
+body.s2-active .rail .lbl,body.s2-active .hint{color:var(--madder-deep)}
+body.s2-active .rail [aria-current="true"] .dot{background:var(--madder);box-shadow:0 0 12px rgba(168,30,35,.6)}
+body.locked .rail,body.locked .hint,body.locked .thread{display:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.s2 :focus-visible{outline-color:var(--madder-deep)}
+
+@media (max-width:980px){
+  .split,.two,.craft-wrap{grid-template-columns:1fr}
+  .rail{display:none}
+  .slide{align-content:start;padding-top:clamp(38px,7vh,60px)}
+  .medallion{--ring:min(74vw,320px)}
+  .viewer{min-height:260px;aspect-ratio:1/.8}
+}
+@media (max-width:560px){.hint{display:none}.folio-in{padding-bottom:130px}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .medallion{transform:none!important}
+}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.s1 .hero > *{animation:rise .9s cubic-bezier(.2,.7,.3,1) both}
+.s1 .hero > *:nth-child(2){animation-delay:.12s}
+.s1 .hero > *:nth-child(3){animation-delay:.22s}
+.s1 .hero > *:nth-child(4){animation-delay:.3s}
+@media print{
+  .deck{height:auto;overflow:visible}
+  .slide{min-height:auto;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .rail,.hint,.thread,.folio,.folio-nav{display:none!important}
+}
+</style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <pattern id="tutta" width="72" height="72" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#F3CE83" stroke-width="1.15" stroke-linecap="round">
+        <path d="M0 36 C 14 36 14 14 30 14 C 44 14 44 34 32 34 C 24 34 24 22 34 22"/>
+        <path d="M36 72 C 36 58 58 58 58 42 C 58 28 38 28 38 40 C 38 48 50 48 50 38"/>
+        <path d="M72 36 C 58 36 58 58 42 58 C 28 58 28 38 40 38"/>
+        <path d="M30 14 C 30 6 40 2 46 8"/>
+        <path d="M58 42 C 66 42 70 52 64 58"/>
+      </g>
+    </pattern>
+    <pattern id="carpet-gold" width="56" height="56" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#F3CE83" stroke-width="1.4">
+        <path d="M28 4 L52 28 L28 52 L4 28 Z"/><path d="M28 16 L40 28 L28 40 L16 28 Z"/>
+        <path d="M0 0 L8 8 M56 0 L48 8 M0 56 L8 48 M56 56 L48 48"/>
+      </g>
+    </pattern>
+    <pattern id="carpet-red" width="56" height="56" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#7A1418" stroke-width="1.4">
+        <path d="M28 4 L52 28 L28 52 L4 28 Z"/><path d="M28 16 L40 28 L28 40 L16 28 Z"/>
+        <path d="M0 0 L8 8 M56 0 L48 8 M0 56 L8 48 M56 56 L48 48"/>
+      </g>
+    </pattern>
+  </defs>
+</svg>
+
+<div class="thread" id="thread"></div>
+<nav aria-label="Слайды">
+  <ul class="rail" id="rail">
+    <li><button type="button" data-go="0"><span class="lbl">Страна гор</span><span class="dot"></span></button></li>
+    <li><button type="button" data-go="1"><span class="lbl">История</span><span class="dot"></span></button></li>
+    <li><button type="button" data-go="2"><span class="lbl">Народы</span><span class="dot"></span></button></li>
+    <li><button type="button" data-go="3"><span class="lbl">Промыслы</span><span class="dot"></span></button></li>
+    <li><button type="button" data-go="4"><span class="lbl">Земля</span><span class="dot"></span></button></li>
+  </ul>
+</nav>
+<p class="hint" id="hint">↓ ИЛИ → ДАЛЬШЕ · КЛИК ПО НАРОДУ — ОТДЕЛЬНЫЙ СЛАЙД</p>
+
+<main class="deck" id="deck">
+
+  <section class="slide s1" id="sl-0">
+    <canvas class="scene" data-place="caspian" aria-hidden="true"></canvas>
+    <svg class="weave" style="opacity:.13" aria-hidden="true"><rect width="100%" height="100%" fill="url(#tutta)"/></svg>
+    <div class="scrim"></div>
+    <div class="layer hero">
+      <p class="kicker">РЕСПУБЛИКА ДАГЕСТАН · КАВКАЗ · КАСПИЙ</p>
+      <div class="medallion" id="med">
+        <div class="medallion-inner">
+          <p class="med-sub">ДАГ — ГОРА · СТАН — СТРАНА</p>
+          <h1 class="engraved">Дагестан</h1>
+          <p class="med-note">Самая многонациональная земля России</p>
+        </div>
+      </div>
+      <p class="lede" style="text-align:center;max-width:56ch">Тридцать с лишним народов на площади одной Хорватии: от каспийских дюн до вершин выше четырёх километров, от античной Албании до крепости, которую стерегут пятнадцать веков.</p>
+      <div class="facts">
+        <div class="fact"><b>50&nbsp;270</b><span>КМ² ПЛОЩАДЬ</span></div>
+        <div class="fact"><b>3,2</b><span>МЛН ЖИТЕЛЕЙ</span></div>
+        <div class="fact"><b>30+</b><span>НАРОДОВ</span></div>
+        <div class="fact"><b>14</b><span>ПИСЬМЕННЫХ ЯЗЫКОВ</span></div>
+        <div class="fact"><b>530</b><span>КМ БЕРЕГА КАСПИЯ</span></div>
+        <div class="fact"><b>4&nbsp;466</b><span>М — БАЗАРДЮЗЮ</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide s2" id="sl-1">
+    <canvas class="scene" data-place="derbent" aria-hidden="true"></canvas>
+    <svg class="weave" style="opacity:.13" aria-hidden="true"><rect width="100%" height="100%" fill="url(#carpet-red)"/></svg>
+    <div class="scrim"></div>
+    <div class="layer head-2">
+      <div>
+        <p class="kicker">КРАТКАЯ ИСТОРИЯ · НАЖМИТЕ НА ВЕХУ</p>
+        <h2 class="chiseled">Двадцать веков<br>на Каспийских воротах</h2>
+      </div>
+      <p class="lede" style="max-width:40ch">Узкий проход между морем и хребтом веками решал, кто ходит с севера на юг. Поэтому здесь стоит Дербент — и поэтому здесь никогда не было одной власти надолго.</p>
+    </div>
+    <div class="layer timeline" id="timeline">
+      <button class="ev" type="button" aria-expanded="false"><time>I тыс. до н.э.</time><p>На юге складывается <strong>Кавказская Албания</strong> — античное государство с письменностью и городами.<span class="more">Албанский алфавит был заново прочитан только в XX веке по синайским палимпсестам. Часть его наследия связывают с предками лезгинских народов.</span></p></button>
+      <button class="ev" type="button" aria-expanded="false"><time>V–VI вв.</time><p>Сасаниды возводят <strong>Дербент</strong> и цитадель Нарын-Кала: стены от гор до самого моря запирают Каспийский проход.<span class="more">Северная и южная стены шли параллельно на три километра, уходя в море, — флот не мог обойти город вброд. Часть подводной кладки видна и сегодня.</span></p></button>
+      <button class="ev" type="button" aria-expanded="false"><time>VII–X вв.</time><p>Арабские походы. Дербент становится опорой <strong>ислама</strong> на Кавказе; здесь — древнейшая мечеть России.<span class="more">Джума-мечеть Дербента датируется VIII веком. Ислам расходился отсюда в горы столетиями — до высокогорных обществ он дошёл только к XV–XVI векам.</span></p></button>
+      <button class="ev" type="button" aria-expanded="false"><time>XII–XVIII вв.</time><p>Мозаика владений: <strong>Тарковское шамхальство</strong>, Аварское, Казикумухское и Дербентское ханства, вольные общества гор.<span class="more">«Вольные общества» — союзы сельских общин без князя, живущие по адатам. Акуша-Дарго, Андалал, Ахты-пара решали дела сходом на годекане.</span></p></button>
+      <button class="ev" type="button" aria-expanded="false"><time>1741</time><p>Персидский поход <strong>Надир-шаха</strong> разбит в Андалале — горные общества выстояли против сильнейшей армии Азии.<span class="more">Сражение у Согратля и Чоха вошло в память как общий подвиг многих народов сразу: аварцев, лакцев, даргинцев.</span></p></button>
+      <button class="ev" type="button" aria-expanded="false"><time>1813</time><p>По <strong>Гюлистанскому миру</strong> земли Дагестана входят в состав Российской империи.<span class="more">Персия отказалась от притязаний на Дагестан и Северный Азербайджан. Для гор это означало начало долгого и болезненного встраивания в империю.</span></p></button>
+      <button class="ev" type="button" aria-expanded="false"><time>1834–1859</time><p>Имамат <strong>Шамиля</strong> — четверть века Кавказской войны. Она заканчивается в горном ауле Гуниб.<span class="more">Шамиль, аварец из Гимры, соединил десятки обществ в одно государство с налогами, судом по шариату и артиллерией. После пленения жил в Калуге, умер в Медине.</span></p></button>
+      <button class="ev" type="button" aria-expanded="false"><time>1860</time><p>Учреждена <strong>Дагестанская область</strong>; порт Петровск связывает край с империей.<span class="more">Тогда же появляются первые светские школы, типографии и телеграф, а Петровск — будущая Махачкала — становится главным портом.</span></p></button>
+      <button class="ev" type="button" aria-expanded="false"><time>1921</time><p>20 января провозглашена <strong>Дагестанская АССР</strong> со столицей в Махачкале.<span class="more">За два десятилетия письменность народов сменилась дважды: с арабской графики (аджам) на латиницу, затем на кириллицу.</span></p></button>
+      <button class="ev" type="button" aria-expanded="false"><time>1991</time><p>Образована <strong>Республика Дагестан</strong> в составе Российской Федерации.<span class="more">Дагестан — единственный субъект, где нет «титульной» нации: республику возглавляет не один народ, а конституционный баланс всех.</span></p></button>
+      <button class="ev" type="button" aria-expanded="false"><time>2003</time><p>Цитадель, старый город и стены Дербента внесены в <strong>список Всемирного наследия ЮНЕСКО</strong>.<span class="more">Это единственный объект Всемирного наследия в республике и один из старейших непрерывно живущих городов страны.</span></p></button>
+    </div>
+  </section>
+
+  <section class="slide s3" id="sl-2">
+    <canvas class="scene" data-place="aul" aria-hidden="true"></canvas>
+    <svg class="weave" style="opacity:.11" aria-hidden="true"><rect width="100%" height="100%" fill="url(#carpet-gold)"/></svg>
+    <div class="scrim"></div>
+    <div class="layer split">
+      <div class="stat-col">
+        <div>
+          <p class="kicker">ГОРА ЯЗЫКОВ</p>
+          <h2 class="engraved" style="font-size:clamp(30px,4.2vw,58px)">Народы<br>Дагестана</h2>
+        </div>
+        <p class="lede">Ни один народ здесь не составляет большинства — республика живёт без «титульной» нации. Арабские географы называли эти горы <em>Джабаль аль-Альсун</em>, «горой языков».</p>
+        <div class="stat"><b>3</b><span>языковые семьи: нахско-дагестанская, тюркская, индоевропейская</span></div>
+        <div class="stat"><b>14</b><span>языков имеют письменность и статус государственных</span></div>
+        <div class="stat"><b>2 560 м</b><span>Куруш — самое высокогорное село Европы</span></div>
+      </div>
+      <div>
+        <div class="peoples" id="peoples"></div>
+        <p class="lede" style="margin-bottom:1rem">Нажмите на народ — откроется отдельный слайд с его историей, языком и нынешним положением. Соседние аулы веками говорили на разных языках и понимали друг друга через третий: отсюда <strong style="color:var(--gold);font-weight:600">годекан</strong>, сельская площадь совета, и <strong style="color:var(--gold);font-weight:600">адаты</strong> — неписаные законы гостеприимства и куначества.</p>
+        <div class="langs">
+          <span>аварский</span><span>даргинский</span><span>кумыкский</span><span>лезгинский</span>
+          <span>лакский</span><span>табасаранский</span><span>ногайский</span><span>рутульский</span>
+          <span>агульский</span><span>цахурский</span><span>чеченский</span><span>азербайджанский</span>
+          <span>татский</span><span>русский</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide s4" id="sl-3">
+    <canvas class="scene" data-place="kubachi" aria-hidden="true"></canvas>
+    <svg class="weave" style="opacity:.1" aria-hidden="true"><rect width="100%" height="100%" fill="url(#tutta)"/></svg>
+    <div class="scrim"></div>
+    <div class="layer craft-wrap">
+      <div>
+        <div class="viewer" id="viewer">
+          <div class="no3d" id="no3d">Загружаю трёхмерную мастерскую…</div>
+          <p class="hint3d">ТЯНИТЕ, ЧТОБЫ ВРАЩАТЬ · КОЛЕСО — МАСШТАБ</p>
+        </div>
+        <div class="objbar" id="objbar"></div>
+      </div>
+      <div class="craft-info">
+        <div>
+          <p class="kicker">НАЦИОНАЛЬНОЕ ДОСТОЯНИЕ · ПРОМЫСЛЫ</p>
+          <h2 class="engraved">Ремёсла, у которых есть адрес</h2>
+        </div>
+        <p class="where" id="craft-where">КУБАЧИ · ДАХАДАЕВСКИЙ РАЙОН</p>
+        <h3 id="craft-name" style="color:var(--gold)">Кубачинское серебро</h3>
+        <p class="lede" id="craft-text">Аул златокузнецов, известный в средневековье как Зирехгеран — «кольчужники». Здесь режут по серебру черневой узор «тутта» — бесконечную вьющуюся ветвь.</p>
+        <div class="craft-list">
+          <div><b>Кайтаг</b>Шёлковая вышивка вольным «текучим» узором; панно хранятся в музеях мира.</div>
+          <div><b>Гоцатль</b>Серебряные кубки, рога и подносы с золочением и гравировкой.</div>
+          <div><b>Анди</b>Чёрная бурка из овечьей шерсти — плащ, палатка и постель разом.</div>
+          <div><b>Харбук и Амузги</b>Оружейники: стволы, замки и знаменитые амузгинские клинки.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide s5" id="sl-4">
+    <canvas class="scene" data-place="sulak" aria-hidden="true"></canvas>
+    <svg class="weave" style="opacity:.1" aria-hidden="true"><rect width="100%" height="100%" fill="url(#tutta)"/></svg>
+    <div class="scrim"></div>
+    <div class="layer" style="margin-bottom:clamp(14px,2.2vh,24px)">
+      <p class="kicker" style="color:var(--caspian-lt)">ЗЕМЛЯ И КУЛЬТУРА · НАЖМИТЕ НА МЕСТО — СМЕНИТСЯ ФОН</p>
+      <h2 class="engraved">Что показывают гостю</h2>
+    </div>
+    <div class="layer two">
+      <div class="nature" id="nature">
+        <button class="nrow" type="button" data-place="sulak" aria-pressed="true"><h3>Сулакский каньон<small>Один из глубочайших каньонов Европы, бирюзовая вода Сулака</small></h3><span class="val">1 920 м</span></button>
+        <button class="nrow" type="button" data-place="sarykum" aria-pressed="false"><h3>Бархан Сарыкум<small>Одна из крупнейших песчаных гор Евразии — посреди степи</small></h3><span class="val">≈260 м</span></button>
+        <button class="nrow" type="button" data-place="samur" aria-pressed="false"><h3>Самурский лес<small>Единственный в России субтропический лиановый лес</small></h3><span class="val">дельта Самура</span></button>
+        <button class="nrow" type="button" data-place="gunib" aria-pressed="false"><h3>Гунибское плато<small>Крепость природы, где закончилась Кавказская война</small></h3><span class="val">1 500 м</span></button>
+        <button class="nrow" type="button" data-place="karadakh" aria-pressed="false"><h3>Карадахская теснина<small>«Ворота чудес»: щель в несколько метров и стены в сто</small></h3><span class="val">400 м длины</span></button>
+        <button class="nrow" type="button" data-place="derbent" aria-pressed="false"><h3>Дербент<small>Древнейший город России, Нарын-Кала — наследие ЮНЕСКО</small></h3><span class="val">2 000 лет</span></button>
+      </div>
+      <div class="culture">
+        <div class="cult-item"><strong>Лезгинка</strong><p>Танец-состязание под зурну, барабан и агач-кумуз. Знают все, танцуют по-своему — у каждого народа свой рисунок.</p></div>
+        <div class="cult-item"><strong>Кухня</strong><p>Хинкал с бульоном и чесноком, чуду с творогом и травами, урбеч из абрикосовой косточки и льна, горный мёд, сушёный абрикос.</p></div>
+        <div class="cult-item"><strong>Спорт</strong><p>Вольная борьба и её олимпийские чемпионы — часть той же школы выносливости, что и горский быт.</p></div>
+        <div class="quote">«Мне кажется порою, что солдаты, с кровавых не пришедшие полей…»
+          <cite>РАСУЛ ГАМЗАТОВ · «ЖУРАВЛИ», 1968 · НАРОДНЫЙ ПОЭТ ДАГЕСТАНА</cite></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="folio" id="folio" role="dialog" aria-modal="true" aria-label="Народ Дагестана" hidden>
+  <div class="folio-bg"><canvas id="folio-canvas" aria-hidden="true"></canvas></div>
+  <div class="folio-scrim"></div>
+  <div class="folio-in" id="folio-in"></div>
+  <div class="folio-nav">
+    <button class="fbtn" type="button" id="f-prev">← ПРЕДЫДУЩИЙ</button>
+    <button class="fbtn" type="button" id="f-next">СЛЕДУЮЩИЙ →</button>
+    <div class="folio-jump" id="folio-jump"></div>
+    <span class="spacer"></span>
+    <button class="fbtn primary" type="button" id="f-close">ЗАКРЫТЬ · ESC</button>
+  </div>
+</div>
+
+<script>
+var PEOPLES = [
+{k:"avar",n:"Аварцы",self:"магӀарулал",c:"#E9B44C",fam:"Нахско-дагестанская семья",share:"≈29%",num:"≈950 тыс.",place:"gunib",
+ land:"Хунзахский, Гунибский, Ботлихский, Гергебильский, Цумадинский, Чародинский районы; равнинные переселенческие сёла",
+ hist:"Раннесредневековый Сарир, а затем Аварское (Хунзахское) ханство веками были самым сильным горским государством Западного Дагестана. В 1741 году аварские общества вместе с соседями остановили в Андалале армию Надир-шаха. Из аварского аула Гимры вышел имам Шамиль, объединивший горские общества в имамат и державший оборону четверть века — до Гуниба 1859 года.",
+ now:"Сегодня аварцы — самый многочисленный народ республики. Со второй половины XX века идёт массовое переселение с гор на равнину: крупные аварские общины живут в Махачкале, Кизилюрте и Хасавюрте, тогда как высокогорные сёла пустеют. Аварский — язык школы, театра, газет и радио, но его сельские диалекты сильно расходятся между собой.",
+ known:["Имам Шамиль","Расул Гамзатов","Андийская бурка","Гоцатлинское серебро","Хунзахское плато"]},
+
+{k:"dargin",n:"Даргинцы",self:"дарган",c:"#D9603B",fam:"Нахско-дагестанская семья",share:"≈17%",num:"≈540 тыс.",place:"aul",
+ land:"Акушинский, Левашинский, Сергокалинский, Дахадаевский, Кайтагский районы",
+ hist:"Даргинские земли делились на Кайтагское уцмийство — наследственное владение с писаным сводом законов — и Акуша-Дарго, крупнейший союз вольных обществ, где всё решал сход. Уже в средневековье даргинские сёла специализировались на ремесле: Кубачи ковали и резали серебро, Харбук и Амузги делали оружие, Сулевкент — керамику.",
+ now:"Второй по численности народ республики и один из самых предприимчивых: даргинская диаспора заметна в Махачкале, Каспийске и за пределами Дагестана. Кубачинский художественный комбинат работает до сих пор, хотя мастера всё чаще трудятся в частных мастерских. Даргинский язык распадается на очень разные наречия — кубачинское и кайтагское иногда считают отдельными языками.",
+ known:["Кубачинское серебро","Кайтагская вышивка","Амузгинские клинки","Уцмийство Кайтага"]},
+
+{k:"kumyk",n:"Кумыки",self:"къумукъ",c:"#4FA3A5",fam:"Тюркская семья, кыпчакская группа",share:"≈15%",num:"≈490 тыс.",place:"caspian",
+ land:"Прикаспийская равнина: Буйнакский, Карабудахкентский, Каякентский, Хасавюртовский районы, Махачкала",
+ hist:"Тарковское шамхальство было крупнейшим государством Северо-Восточного Кавказа XV–XIX веков, а его правители носили титул шамхала и вали Дагестана. Кумыкский язык на протяжении столетий служил языком межнационального общения всего Северного Кавказа — на нём говорили с русскими послами, торговали и вели переписку.",
+ now:"Кумыки — коренной народ равнины, и именно поэтому для них особенно остры вопросы землепользования: переселение горцев на плоскость изменило состав районов, где кумыки жили веками. Кумыкский музыкально-драматический театр, открытый в 1930 году, стал первым национальным театром Дагестана и работает по сей день.",
+ known:["Тарковское шамхальство","Йырчи Казак","Первый театр Дагестана","Анжи-Кала"]},
+
+{k:"lezgin",n:"Лезгины",self:"лезги",c:"#C9455F",fam:"Нахско-дагестанская семья, лезгинская группа",share:"≈13,5%",num:"≈440 тыс. в РД",place:"samur",
+ land:"Ахтынский, Докузпаринский, Сулейман-Стальский, Курахский, Магарамкентский районы; крупная часть народа — в Азербайджане",
+ hist:"Лезгинские земли — южная часть исторической Кавказской Албании; позже здесь сложились Кюринское ханство и вольные общества Ахты-пара и Докуз-пара. Ахты был крупным торговым и книжным центром с медресе и знаменитыми серными источниками.",
+ now:"Главная особенность положения лезгин — разделённость государственной границей: значительная часть народа живёт в Азербайджане, и вопросы приграничного передвижения и водораздела Самура остаются чувствительными. Самурский лиановый лес и водозабор из Самура — постоянная тема экологических споров. Куруш, лезгинское село, — самое высокогорное в Европе.",
+ known:["Танец лезгинка","Сулейман Стальский","Куруш, 2 560 м","Ахтынские источники","Самурский лес"]},
+
+{k:"lak",n:"Лакцы",self:"лак",c:"#8FBF5B",fam:"Нахско-дагестанская семья",share:"≈5,5%",num:"≈180 тыс.",place:"aul",
+ land:"Лакский и Кулинский районы, Новолакский район; историческая столица — Кумух",
+ hist:"Кумух был центром Казикумухского шамхальства, а затем ханства — одного из древнейших очагов власти и исламской учёности в горах. Малоземелье сделало лакцев народом отходников: лакские лудильщики, ювелиры, кондитеры и торговцы работали по всему Кавказу, в Закавказье и Средней Азии.",
+ now:"Народ сильно урбанизирован: большинство лакцев живёт в городах, а часть была переселена в Новолакский район, откуда сейчас идёт обратный процесс, связанный с восстановлением Ауховского района. Балхар — лакское село — остаётся единственным центром традиционной лепной керамики республики.",
+ known:["Балхарская керамика","Кумух","Цовкринские канатоходцы","Лудильщики-отходники"]},
+
+{k:"tabasaran",n:"Табасараны",self:"табасаран",c:"#7D6BC0",fam:"Нахско-дагестанская семья, лезгинская группа",share:"≈4,5%",num:"≈150 тыс.",place:"aul",
+ land:"Табасаранский, Хивский и Дербентский районы",
+ hist:"Табасаранское майсумство и кадийство — средневековые владения на пути из Дербента в горы. Ковроткачество здесь известно с раннего средневековья: узлы вязали девочки с детства, а ковёр входил в приданое.",
+ now:"Табасаранский ковёр — визитная карточка республики и предмет экспорта, хотя ручное ткачество конкурирует с фабричным. Табасаранский язык знаменит необычайно развитой падежной системой — его регулярно приводят как пример одного из самых сложных по грамматике языков мира.",
+ known:["Ворсовые ковры","Растительные краски: марена, индиго","Крепость Хучни","Сложнейшая падежная система"]},
+
+{k:"azeri",n:"Азербайджанцы",self:"азәрбајҹанлы",c:"#EFD9A8",fam:"Тюркская семья, огузская группа",share:"≈4,5%",num:"≈145 тыс.",place:"derbent",
+ land:"Дербент и Дербентский район, Табасаранский район, село Нижний Катрух",
+ hist:"Азербайджанское население юга Дагестана связано с историей Дербентского ханства и многовековым персидским и ширванским влиянием. Дербент столетиями был городом, где азербайджанская, персидская, тюркская и горская культуры сходились на одном базаре.",
+ now:"Азербайджанский — один из четырнадцати государственных языков республики: на нём выходят газеты и ведётся школьное преподавание. Дербент остаётся фактически двуязычным городом, а виноградарство и садоводство юга во многом держатся на этих сёлах.",
+ known:["Дербентское ханство","Виноградарство","Двуязычный Дербент","Кухня юга"]},
+
+{k:"chechen",n:"Чеченцы-аккинцы",self:"аьккхий",c:"#5C9E6E",fam:"Нахско-дагестанская семья, нахская группа",share:"≈3,5%",num:"≈110 тыс.",place:"aul",
+ land:"Новолакский, Хасавюртовский, Казбековский районы — исторический Аух",
+ hist:"Аккинцы (ауховцы) — нахское население западного Дагестана, жившее в Аухе с раннего средневековья. В феврале 1944 года народ был депортирован, Ауховский район упразднён, а его сёла заселены переселенцами из горных районов.",
+ now:"После возвращения из ссылки начался долгий и сложный процесс восстановления Ауховского района, связанный с переселением жителей Новолакского района на новые земли. Это одна из самых чувствительных тем внутренней политики республики, которая решается десятилетиями и шаг за шагом.",
+ known:["Исторический Аух","Тайповая структура","Восстановление района"]},
+
+{k:"nogai",n:"Ногайцы",self:"ногъай",c:"#E08A3C",fam:"Тюркская семья, кыпчакская группа",share:"≈1,4%",num:"≈45 тыс.",place:"sarykum",
+ land:"Ногайский, Тарумовский, Кизлярский районы — Ногайская степь",
+ hist:"Ногайцы — прямые наследники Ногайской Орды, кочевого государства, распавшегося в XVI–XVII веках. Степное скотоводство, коневодство и богатый устный эпос, включая сказания об Эдиге, составляли основу их культуры.",
+ now:"Народ разделён между тремя регионами — Дагестаном, Ставропольским краем и Карачаево-Черкесией, что затрудняет единую культурную политику. Главная проблема — опустынивание Ногайской степи: перевыпас и переброска отгонных стад с гор сокращают пастбища, от которых зависит хозяйство.",
+ known:["Наследие Ногайской Орды","Эпос «Эдиге»","Домбра","Степное коневодство"]},
+
+{k:"rutul",n:"Рутульцы",self:"мыхабыр",c:"#9BB7D4",fam:"Нахско-дагестанская семья, лезгинская группа",share:"≈1%",num:"≈30 тыс.",place:"gunib",
+ land:"Рутульский район, верховья Самура; несколько сёл в Азербайджане",
+ hist:"Рутульский магал был союзом вольных обществ, который держал перевальные пути в верховьях Самура. Долгое время рутульцы пользовались для письма арабской графикой, а собственная письменность появилась совсем недавно.",
+ now:"Литературный рутульский язык получил письменность лишь в 1990 году — школьное преподавание на нём ведётся немного лет. Хозяйство остаётся горным: отгонное овцеводство, шерсть, войлок. Как и у других малых народов, главная угроза — отток молодёжи в города.",
+ known:["Вольный магал","Письменность с 1990 года","Отгонное овцеводство","Верховья Самура"]},
+
+{k:"agul",n:"Агулы",self:"агъул",c:"#C58BA8",fam:"Нахско-дагестанская семья, лезгинская группа",share:"≈1%",num:"≈30 тыс.",place:"karadakh",
+ land:"Агульский район, ущелья Кошан, Курах и Хпюк",
+ hist:"Агульские вольные общества жили в узких ущельях, защищённых природой лучше любых стен. От средневековья здесь сохранились боевые башни и каменные мечети с резными столбами.",
+ now:"Один из самых малочисленных коренных народов республики. Письменность создана в 1990 году, литературная традиция только складывается. Хозяйство держится на овцеводстве и садах, а часть сёл переселена на равнину из-за труднодоступности горных дорог.",
+ known:["Боевые башни","Каменное зодчество","Письменность с 1990 года","Овцеводство"]},
+
+{k:"tsakhur",n:"Цахуры",self:"йыхбы",c:"#D4C05A",fam:"Нахско-дагестанская семья, лезгинская группа",share:"≈0,3%",num:"≈10 тыс. в РД",place:"gunib",
+ land:"Рутульский район, верховья Самура: Цахур, Мишлеш, Микик; большая часть народа — в Азербайджане",
+ hist:"Цахурское султанство контролировало высокогорные перевалы Главного Кавказского хребта. Народ издавна жил на два склона: летние пастбища — в Дагестане, зимние — в Азербайджане.",
+ now:"Цахуры — трансграничный народ, и государственная граница разрезала их традиционный годовой цикл перегона скота. В Дагестане их осталось около десяти тысяч; язык преподаётся в начальной школе, но повседневно многие переходят на азербайджанский и русский.",
+ known:["Цахурское султанство","Отгонное скотоводство","Шерстяное ткачество","Жизнь на два склона"]},
+
+{k:"tat",n:"Таты и горские евреи",self:"джуһури",c:"#6F97C7",fam:"Индоевропейская семья, иранская группа",share:"менее 0,1%",num:"около 1 тыс.",place:"derbent",
+ land:"Дербент, Махачкала, посёлок Джалган",
+ hist:"Горские евреи говорят на джуһури — языке иранской группы с древнееврейским пластом, и живут на Восточном Кавказе больше тысячи лет. Дербент был одним из главных центров общины: здесь работали синагоги, школы и мастерские ювелиров и кожевников.",
+ now:"После массовой эмиграции 1990-х годов в Израиль, Москву и США община сократилась в десятки раз. В Дербенте действует синагога «Келе-Нумаз», сохраняются кладбище и культурный центр, а язык джуһури внесён в списки исчезающих. Дагестанская диаспора остаётся связанной с республикой и поддерживает памятники.",
+ known:["Язык джуһури","Синагога «Келе-Нумаз»","Ювелиры и кожевники","Тысяча лет на Кавказе"]},
+
+{k:"russ",n:"Русские",self:"русские",c:"#B9BEC7",fam:"Индоевропейская семья, славянская группа",share:"≈2,7%",num:"≈80 тыс.",place:"caspian",
+ land:"Кизляр, Кизлярский и Тарумовский районы, Махачкала, Каспийск",
+ hist:"Русское присутствие на севере Дагестана начинается с терского казачества и крепости Кизляр, основанной в 1735 году как южный форпост империи. В советские десятилетия русские специалисты составляли основу городской промышленности, науки и медицины республики.",
+ now:"Доля русского населения сократилась многократно: если в 1959 году она превышала пятую часть жителей, то сейчас составляет менее трёх процентов — сказался отток 1990-х. Для Кизлярской зоны действуют программы поддержки, а казачьи общества сохраняют свои традиции.",
+ known:["Кизляр, 1735 год","Терское казачество","Кизлярский коньяк","Городская промышленность"]}
+];
+</script>
+
+<script>
+/* ── Рисованные виды реальных мест Дагестана (canvas) ────── */
+var Scenes = (function(){
+  var cache = {};
+  function prng(s){return function(){s|=0;s=s+0x6D2B79F5|0;var t=Math.imul(s^s>>>15,1|s);
+    t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  function ridgeline(seed,steps,rough){
+    var key=seed+"_"+steps+"_"+rough;
+    if(cache[key]) return cache[key];
+    var r=prng(seed), n=Math.pow(2,steps)+1, a=new Array(n), i, step, amp=1, len, half;
+    a[0]=r()*.5; a[n-1]=r()*.5;
+    for(len=n-1; len>1; len=half){
+      half=len>>1;
+      for(i=half;i<n;i+=len) a[i]=(a[i-half]+a[i+half])/2 + (r()-.5)*amp;
+      amp*=rough;
+    }
+    var mn=Math.min.apply(null,a), mx=Math.max.apply(null,a), d=(mx-mn)||1;
+    for(i=0;i<n;i++) a[i]=(a[i]-mn)/d;
+    cache[key]=a; return a;
+  }
+  function sky(c,w,h,stops){
+    var g=c.createLinearGradient(0,0,0,h);
+    for(var i=0;i<stops.length;i++) g.addColorStop(stops[i][0],stops[i][1]);
+    c.fillStyle=g; c.fillRect(0,0,w,h);
+  }
+  function glow(c,x,y,r,col,a){
+    var g=c.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,col); g.addColorStop(1,"rgba(0,0,0,0)");
+    c.globalAlpha=a; c.fillStyle=g; c.beginPath(); c.arc(x,y,r,0,6.2832); c.fill(); c.globalAlpha=1;
+  }
+  function ridge(c,w,h,o){
+    var a=ridgeline(o.seed,7,o.rough||.55), n=a.length, i,x,y;
+    var dx=(o.px||0)*(o.par||0), base=h*o.base, amp=h*o.amp;
+    c.beginPath(); c.moveTo(-40,h+10);
+    for(i=0;i<n;i++){
+      x=dx-40+ (w+80)*(i/(n-1));
+      y=base-amp*a[i];
+      c.lineTo(x,y);
+    }
+    c.lineTo(w+40,h+10); c.closePath();
+    var g=c.createLinearGradient(0,base-amp,0,h);
+    g.addColorStop(0,o.top); g.addColorStop(1,o.bottom||o.top);
+    c.fillStyle=g; c.fill();
+    if(o.snow){
+      c.save(); c.clip();
+      c.fillStyle="rgba(255,255,255,.20)";
+      c.fillRect(-40,base-amp-30,w+80,amp+40);
+      c.beginPath(); c.moveTo(-40,h+10);
+      for(i=0;i<n;i++){x=dx-40+(w+80)*(i/(n-1)); y=base-amp*a[i]; c.lineTo(x,y+amp*.13);}
+      c.lineTo(w+40,h+10); c.closePath();
+      c.fillStyle=g; c.fill();
+      c.restore();
+    }
+    return {a:a,base:base,amp:amp,dx:dx};
+  }
+  function haze(c,w,h,y,col,a){
+    var g=c.createLinearGradient(0,y-h*.14,0,y+h*.1);
+    g.addColorStop(0,"rgba(0,0,0,0)"); g.addColorStop(.5,col); g.addColorStop(1,"rgba(0,0,0,0)");
+    c.globalAlpha=a; c.fillStyle=g; c.fillRect(0,y-h*.16,w,h*.3); c.globalAlpha=1;
+  }
+  function sea(c,w,h,y,t,c1,c2,px){
+    var g=c.createLinearGradient(0,y,0,h);
+    g.addColorStop(0,c1); g.addColorStop(1,c2);
+    c.fillStyle=g; c.fillRect(0,y,w,h-y);
+    var i,yy,a;
+    for(i=0;i<46;i++){
+      yy=y+Math.pow(i/46,1.85)*(h-y);
+      a=.05+.09*Math.abs(Math.sin(i*1.7+t*.55));
+      c.globalAlpha=a; c.fillStyle="#EAF6F4";
+      var wob=Math.sin(i*.9+t*.7)*w*.06+px*10;
+      c.fillRect(w*.12+wob, yy, w*(.18+.5*(i/46)), Math.max(1,(i/46)*2.4));
+    }
+    c.globalAlpha=1;
+  }
+  function houses(c,w,h,r,o){
+    var n=r.a.length, i, x, y, hw=o.size*h, r2=prng(o.seed||7);
+    for(i=2;i<n-2;i+=1){
+      if(r2()>o.density) continue;
+      x=r.dx-40+(w+80)*(i/(n-1));
+      y=r.base-r.amp*r.a[i];
+      var ww=hw*(.75+r2()*.9), hh=hw*(.6+r2()*.95);
+      c.fillStyle=o.wall; c.fillRect(x-ww/2,y-hh,ww,hh+hw*.5);
+      c.fillStyle=o.roof; c.fillRect(x-ww/2-ww*.09,y-hh-hw*.11,ww*1.18,hw*.13);
+      if(r2()<.75){
+        c.fillStyle=o.win; var wn=Math.max(1,Math.round(ww/(hw*.5)));
+        for(var j=0;j<wn;j++) c.fillRect(x-ww/2+ww*(j+.32)/wn, y-hh*.72, ww*.16, hh*.2);
+      }
+    }
+  }
+  function fortress(c,w,h,x0,y0,x1,y1,col,tower){
+    var steps=9, i, x, y, sw=(x1-x0)/steps, th=h*.055;
+    c.fillStyle=col;
+    for(i=0;i<steps;i++){
+      x=x0+sw*i; y=y0+(y1-y0)*Math.pow(i/steps,.85);
+      c.fillRect(x,y,sw+1,h-y);
+      for(var m=0;m<3;m++) c.fillRect(x+sw*(m*.36+.04), y-th*.36, sw*.26, th*.4);
+    }
+    if(tower){
+      c.fillRect(x0-w*.045,y0-h*.075,w*.062,h*.075+ (h-y0));
+      for(var k=0;k<3;k++) c.fillRect(x0-w*.045+w*.062*(k*.36+.03), y0-h*.098, w*.017, h*.03);
+    }
+  }
+  function trees(c,w,h,y,col,scale,dens,seed){
+    var r=prng(seed), i, x, tw, th;
+    for(i=0;i<dens;i++){
+      x=r()*w*1.1-w*.05; th=h*scale*(.6+r()*.9); tw=th*(.42+r()*.3);
+      c.fillStyle=col;
+      c.beginPath();
+      c.moveTo(x,y+h*.02);
+      c.bezierCurveTo(x-tw,y-th*.35,x-tw*.7,y-th,x,y-th);
+      c.bezierCurveTo(x+tw*.7,y-th,x+tw,y-th*.35,x,y+h*.02);
+      c.fill();
+      c.fillRect(x-th*.03,y-th*.5,th*.06,th*.55);
+    }
+  }
+  function stars(c,w,h,t,n,seed){
+    var r=prng(seed),i,x,y,a;
+    for(i=0;i<n;i++){x=r()*w;y=r()*h*.6;a=.25+.55*Math.abs(Math.sin(t*.7+i));
+      c.globalAlpha=a;c.fillStyle="#F5EFE0";c.fillRect(x,y,1.4,1.4);} c.globalAlpha=1;
+  }
+
+  var P = {
+    caspian:function(c,w,h,t,px,py){
+      sky(c,w,h,[[0,"#160E22"],[.42,"#3A2340"],[.66,"#8E4A45"],[.8,"#D98B57"]]);
+      stars(c,w,h,t,60,3);
+      glow(c,w*.72+px*14,h*.66,h*.5,"#FFD9A0",.5);
+      ridge(c,w,h,{seed:11,base:h*.70,amp:h*.20,rough:.52,par:26,px:px,top:"#2B2036",bottom:"#1A1424"});
+      haze(c,w,h,h*.70,"rgba(217,139,87,.35)",.9);
+      sea(c,w,h,h*.71,t,"#123A46","#07131F",px);
+      ridge(c,w,h,{seed:5,base:h*1.08,amp:h*.13,rough:.6,par:60,px:px,top:"#120C16",bottom:"#08050B"});
+    },
+    derbent:function(c,w,h,t,px,py){
+      sky(c,w,h,[[0,"#8FB6CE"],[.45,"#D9C39C"],[.78,"#E8CFA4"]]);
+      glow(c,w*.24+px*10,h*.2,h*.55,"#FFF0CE",.55);
+      sea(c,w,h,h*.62,t,"#4E8CA0","#22566B",px);
+      ridge(c,w,h,{seed:23,base:h*.66,amp:h*.26,rough:.5,par:22,px:px,top:"#A8A08C",bottom:"#6E6A5E"});
+      var g=ridge(c,w,h,{seed:31,base:h*.86,amp:h*.30,rough:.46,par:48,px:px,top:"#C6A97C",bottom:"#8A7350"});
+      fortress(c,w,h,w*.16+px*20,h*.50,w*.80+px*20,h*.86,"#8E7852",true);
+      houses(c,w,h,g,{size:.028,density:.72,wall:"#D8C39A",roof:"#7E6642",win:"#4A3823",seed:9});
+      haze(c,w,h,h*.66,"rgba(240,220,180,.5)",.85);
+    },
+    aul:function(c,w,h,t,px,py){
+      sky(c,w,h,[[0,"#1A2440"],[.4,"#3E4E6E"],[.72,"#8C7E86"],[.9,"#C8A183"]]);
+      glow(c,w*.3+px*10,h*.3,h*.6,"#E9C79A",.35);
+      ridge(c,w,h,{seed:77,base:h*.56,amp:h*.30,rough:.54,par:16,px:px,top:"#4A5570",bottom:"#38415A",snow:true});
+      haze(c,w,h,h*.58,"rgba(190,200,220,.4)",.9);
+      ridge(c,w,h,{seed:41,base:h*.76,amp:h*.28,rough:.5,par:34,px:px,top:"#3A3648",bottom:"#282433"});
+      var g=ridge(c,w,h,{seed:19,base:h*1.02,amp:h*.34,rough:.44,par:64,px:px,top:"#2A2130",bottom:"#15111C"});
+      houses(c,w,h,g,{size:.036,density:.85,wall:"#4B4150",roof:"#332B3B",win:"#F2C572",seed:13});
+      haze(c,w,h,h*.80,"rgba(140,150,190,.3)",.75);
+    },
+    kubachi:function(c,w,h,t,px,py){
+      sky(c,w,h,[[0,"#0E0B14"],[.45,"#241A2C"],[.8,"#4A3348"]]);
+      stars(c,w,h,t,80,17);
+      glow(c,w*.68+px*8,h*.24,h*.4,"#C9CCD3",.22);
+      ridge(c,w,h,{seed:53,base:h*.62,amp:h*.28,rough:.55,par:18,px:px,top:"#241E2E",bottom:"#191424"});
+      ridge(c,w,h,{seed:29,base:h*.86,amp:h*.30,rough:.48,par:42,px:px,top:"#1A1522",bottom:"#100C16"});
+      var g=ridge(c,w,h,{seed:61,base:h*1.06,amp:h*.30,rough:.44,par:70,px:px,top:"#150F1B",bottom:"#0A070E"});
+      houses(c,w,h,g,{size:.04,density:.9,wall:"#241D2C",roof:"#171220",win:"#F3CE83",seed:23});
+    },
+    sulak:function(c,w,h,t,px,py){
+      sky(c,w,h,[[0,"#22406A"],[.4,"#4E7EA0"],[.7,"#9CC0C4"]]);
+      glow(c,w*.5,h*.34,h*.5,"#DDF0EC",.3);
+      ridge(c,w,h,{seed:97,base:h*.52,amp:h*.16,rough:.5,par:14,px:px,top:"#63798E",bottom:"#4A5C72"});
+      var g=c.createLinearGradient(0,h*.62,0,h);
+      g.addColorStop(0,"#2E9B92"); g.addColorStop(1,"#0C4C58");
+      c.fillStyle=g; c.fillRect(0,h*.62,w,h*.38);
+      c.save();
+      c.beginPath();
+      c.moveTo(0,0); c.lineTo(w*.40+px*18,0);
+      c.bezierCurveTo(w*.33+px*18,h*.45,w*.30+px*18,h*.7,w*.14+px*18,h);
+      c.lineTo(0,h); c.closePath();
+      var l=c.createLinearGradient(0,0,w*.4,h); l.addColorStop(0,"#3B3B47"); l.addColorStop(1,"#191A22");
+      c.fillStyle=l; c.fill(); c.restore();
+      c.save();
+      c.beginPath();
+      c.moveTo(w,0); c.lineTo(w*.58-px*18,0);
+      c.bezierCurveTo(w*.66-px*18,h*.42,w*.70-px*18,h*.72,w*.90-px*18,h);
+      c.lineTo(w,h); c.closePath();
+      var r=c.createLinearGradient(w,0,w*.58,h); r.addColorStop(0,"#4A4954"); r.addColorStop(1,"#22222C");
+      c.fillStyle=r; c.fill(); c.restore();
+      haze(c,w,h,h*.66,"rgba(200,225,225,.4)",.8);
+    },
+    sarykum:function(c,w,h,t,px,py){
+      sky(c,w,h,[[0,"#3E5C86"],[.42,"#9CA9B4"],[.72,"#E0C79A"]]);
+      glow(c,w*.6+px*12,h*.36,h*.55,"#FFE7B8",.45);
+      ridge(c,w,h,{seed:13,base:h*.62,amp:h*.14,rough:.5,par:16,px:px,top:"#8792A4",bottom:"#6B7484"});
+      var d=c.createLinearGradient(0,h*.55,0,h);
+      d.addColorStop(0,"#E9C77E"); d.addColorStop(.55,"#D2A757"); d.addColorStop(1,"#9A7638");
+      c.beginPath(); c.moveTo(-20,h);
+      c.bezierCurveTo(w*.2+px*22,h*.92,w*.30+px*22,h*.56,w*.56+px*22,h*.58);
+      c.bezierCurveTo(w*.78+px*22,h*.60,w*.86+px*22,h*.84,w+20,h*.92);
+      c.lineTo(w+20,h+10); c.lineTo(-20,h+10); c.closePath();
+      c.fillStyle=d; c.fill();
+      c.globalAlpha=.28; c.fillStyle="#7A5A28";
+      c.beginPath(); c.moveTo(w*.56+px*22,h*.58);
+      c.bezierCurveTo(w*.62+px*22,h*.72,w*.72+px*22,h*.86,w+20,h*.92);
+      c.lineTo(w+20,h+10); c.lineTo(w*.56+px*22,h+10); c.closePath(); c.fill(); c.globalAlpha=1;
+    },
+    samur:function(c,w,h,t,px,py){
+      sky(c,w,h,[[0,"#1E3326"],[.45,"#3D5A38"],[.8,"#8FA86A"]]);
+      glow(c,w*.42+px*10,h*.2,h*.5,"#E8F0BC",.4);
+      haze(c,w,h,h*.5,"rgba(210,230,190,.45)",.85);
+      trees(c,w,h,h*.72,"#2C4430",.30,26,5);
+      trees(c,w,h,h*.86,"#1C2E22",.42,20,11);
+      trees(c,w,h,h*1.02,"#101E17",.5,14,19);
+      c.strokeStyle="rgba(30,50,34,.55)"; c.lineWidth=2;
+      for(var i=0;i<14;i++){
+        var x=(i/14)*w+px*8;
+        c.beginPath(); c.moveTo(x,0);
+        c.bezierCurveTo(x+18,h*.3,x-22,h*.55,x+10,h*.85); c.stroke();
+      }
+    },
+    gunib:function(c,w,h,t,px,py){
+      sky(c,w,h,[[0,"#2A4470"],[.45,"#6E86A6"],[.78,"#D6C2A0"]]);
+      glow(c,w*.32+px*10,h*.28,h*.5,"#FFEBC4",.4);
+      ridge(c,w,h,{seed:83,base:h*.58,amp:h*.2,rough:.52,par:16,px:px,top:"#6C7B92",bottom:"#55617A"});
+      var x0=w*.16+px*20, x1=w*.86+px*20, ty=h*.52;
+      c.beginPath();
+      c.moveTo(x0-w*.1,h); c.lineTo(x0,ty+h*.06); c.lineTo(x0+w*.04,ty);
+      c.lineTo(x1-w*.05,ty); c.lineTo(x1,ty+h*.08); c.lineTo(x1+w*.12,h); c.closePath();
+      var pg=c.createLinearGradient(0,ty,0,h); pg.addColorStop(0,"#9C8E76"); pg.addColorStop(1,"#4E4740");
+      c.fillStyle=pg; c.fill();
+      c.fillStyle="rgba(255,255,255,.10)"; c.fillRect(x0,ty,x1-x0,h*.012);
+      trees(c,w,h,h*.965,"#2F3A2C",.075,95,7);
+      haze(c,w,h,h*.62,"rgba(220,210,190,.42)",.8);
+    },
+    karadakh:function(c,w,h,t,px,py){
+      sky(c,w,h,[[0,"#0B0D14"],[.5,"#171C26"],[1,"#22272F"]]);
+      var slit=c.createLinearGradient(0,0,0,h);
+      slit.addColorStop(0,"#E7EDD8"); slit.addColorStop(.55,"#9FB09A"); slit.addColorStop(1,"#3E4A42");
+      c.fillStyle=slit; c.fillRect(w*.42,0,w*.16,h);
+      glow(c,w*.5,h*.1,h*.5,"#FFFDF0",.35);
+      c.beginPath();
+      c.moveTo(0,0); c.lineTo(w*.44+px*10,0);
+      c.bezierCurveTo(w*.40+px*10,h*.35,w*.46+px*10,h*.62,w*.36+px*10,h);
+      c.lineTo(0,h); c.closePath();
+      var lg=c.createLinearGradient(0,0,w*.45,h); lg.addColorStop(0,"#2A2A30"); lg.addColorStop(1,"#0D0D11");
+      c.fillStyle=lg; c.fill();
+      c.beginPath();
+      c.moveTo(w,0); c.lineTo(w*.56-px*10,0);
+      c.bezierCurveTo(w*.60-px*10,h*.32,w*.55-px*10,h*.66,w*.66-px*10,h);
+      c.lineTo(w,h); c.closePath();
+      var rg=c.createLinearGradient(w,0,w*.55,h); rg.addColorStop(0,"#35353D"); rg.addColorStop(1,"#131318");
+      c.fillStyle=rg; c.fill();
+      c.globalAlpha=.5; haze(c,w,h,h*.8,"rgba(190,200,180,.5)",.6); c.globalAlpha=1;
+    }
+  };
+
+  function fit(cv){
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var w=cv.clientWidth||cv.parentNode.clientWidth, hh=cv.clientHeight||cv.parentNode.clientHeight;
+    if(!w||!hh) return null;
+    if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(hh*dpr)){
+      cv.width=Math.round(w*dpr); cv.height=Math.round(hh*dpr);
+    }
+    var c=cv.getContext("2d"); c.setTransform(dpr,0,0,dpr,0,0);
+    return {c:c,w:w,h:hh};
+  }
+  return {
+    list:Object.keys(P),
+    draw:function(place,cv,t,px,py){
+      var f=fit(cv); if(!f) return;
+      var fn=P[place]||P.aul;
+      f.c.clearRect(0,0,f.w,f.h);
+      fn(f.c,f.w,f.h,t||0,px||0,py||0);
+    }
+  };
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three/0.128.0/three.min.js"></script>
+<script>
+/* ── Трёхмерная мастерская: предметы можно вращать ───────── */
+var Workshop = (function(){
+  var OBJECTS = [
+    {k:"kubachi",btn:"Кубачинский кувшин",where:"КУБАЧИ · ДАХАДАЕВСКИЙ РАЙОН",name:"Кубачинское серебро",
+     text:"Аул златокузнецов, в средневековье известный как Зирехгеран — «кольчужники». По серебру режут черневой узор «тутта» — бесконечную вьющуюся ветвь; ею покрывают кувшины-мучалы, клинки и браслеты. Ремесло держится в семьях больше тысячи лет."},
+    {k:"balkhar",btn:"Балхарский кувшин",where:"БАЛХАР · АКУШИНСКИЙ РАЙОН",name:"Балхарская керамика",
+     text:"Женское ремесло лакского села: сосуды лепят вручную, без гончарного круга, вытягивая стенки из жгутов глины. Роспись наносят белым ангобом — птицы, спирали, гребёнки — и обжигают в простых печах."},
+    {k:"untsukul",btn:"Унцукульская ваза",where:"УНЦУКУЛЬ · УНЦУКУЛЬСКИЙ РАЙОН",name:"Насечка серебром по дереву",
+     text:"В кизиловое или абрикосовое дерево вбивают тончайшую серебряную проволоку, выкладывая сетку узора, затем шлифуют до блеска. Так делают трости, вазы, шкатулки и трубки — вещь становится тёмной с серебряным кружевом."},
+    {k:"carpet",btn:"Табасаранский ковёр",where:"ТАБАСАРАН · ХИВСКИЙ И ТАБАСАРАНСКИЙ РАЙОНЫ",name:"Табасаранский ковёр",
+     text:"Ворсовый ковёр ручной вязки: до нескольких тысяч узлов на квадратный дециметр, краски растительные — марена даёт красный, индиго синий, шафран и луковая шелуха жёлтый. Хороший ковёр служит поколениями и входит в приданое."}
+  ];
+
+  function tex(w,h,draw){
+    var cv=document.createElement("canvas"); cv.width=w; cv.height=h;
+    draw(cv.getContext("2d"),w,h);
+    var t=new THREE.CanvasTexture(cv);
+    t.wrapS=t.wrapT=THREE.RepeatWrapping;
+    return t;
+  }
+  function tuttaMap(){
+    return tex(1024,512,function(c,w,h){
+      c.fillStyle="#DCDFE6"; c.fillRect(0,0,w,h);
+      c.strokeStyle="#2B2731"; c.lineWidth=3.4; c.lineCap="round";
+      var tile=128, x, y;
+      for(y=0;y<h;y+=tile) for(x=0;x<w;x+=tile){
+        c.save(); c.translate(x,y); c.scale(tile/72,tile/72);
+        c.beginPath();
+        c.moveTo(0,36); c.bezierCurveTo(14,36,14,14,30,14); c.bezierCurveTo(44,14,44,34,32,34); c.bezierCurveTo(24,34,24,22,34,22);
+        c.moveTo(36,72); c.bezierCurveTo(36,58,58,58,58,42); c.bezierCurveTo(58,28,38,28,38,40); c.bezierCurveTo(38,48,50,48,50,38);
+        c.moveTo(72,36); c.bezierCurveTo(58,36,58,58,42,58); c.bezierCurveTo(28,58,28,38,40,38);
+        c.stroke(); c.restore();
+      }
+      for(var b=0;b<3;b++){
+        var by=h*(b===0?.06:b===1?.5:.93);
+        c.fillStyle="#2B2731"; c.fillRect(0,by-6,w,12);
+        c.fillStyle="#DCDFE6"; c.fillRect(0,by-2,w,4);
+      }
+    });
+  }
+  function clayMap(){
+    return tex(1024,512,function(c,w,h){
+      var g=c.createLinearGradient(0,0,0,h);
+      g.addColorStop(0,"#B4622F"); g.addColorStop(.5,"#9C4F27"); g.addColorStop(1,"#7E3E20");
+      c.fillStyle=g; c.fillRect(0,0,w,h);
+      c.fillStyle="#F0E6D2";
+      for(var b=0;b<4;b++){ c.fillRect(0,h*(.14+b*.22),w,7); }
+      c.strokeStyle="#F0E6D2"; c.lineWidth=6; c.lineCap="round";
+      for(var x=0;x<w;x+=64){
+        c.beginPath(); c.moveTo(x,h*.30); c.lineTo(x+32,h*.40); c.lineTo(x+64,h*.30); c.stroke();
+        c.beginPath(); c.arc(x+32,h*.62,13,0,6.2832); c.stroke();
+      }
+    });
+  }
+  function woodMap(){
+    return tex(1024,512,function(c,w,h){
+      var g=c.createLinearGradient(0,0,0,h);
+      g.addColorStop(0,"#4A2E1E"); g.addColorStop(.5,"#35200F"); g.addColorStop(1,"#251609");
+      c.fillStyle=g; c.fillRect(0,0,w,h);
+      c.globalAlpha=.14; c.strokeStyle="#7A5230"; c.lineWidth=2;
+      for(var i=0;i<70;i++){ c.beginPath(); c.moveTo(Math.random()*w,0); c.lineTo(Math.random()*w,h); c.stroke(); }
+      c.globalAlpha=1;
+      c.fillStyle="#E8EAF0";
+      var s=64;
+      for(var y=0;y<h;y+=s) for(var x=0;x<w;x+=s){
+        var cx=x+s/2, cy=y+s/2;
+        for(var k=-4;k<=4;k++){
+          c.fillRect(cx+k*5-1.6, cy-Math.abs(k)*5, 3.2, 5);
+          c.fillRect(cx+k*5-1.6, cy+Math.abs(k)*5-5, 3.2, 5);
+        }
+      }
+    });
+  }
+  function carpetMap(){
+    return tex(768,1024,function(c,w,h){
+      c.fillStyle="#8E1F23"; c.fillRect(0,0,w,h);
+      var bw=w*.13;
+      c.fillStyle="#173A63"; c.fillRect(0,0,w,h);
+      c.fillStyle="#8E1F23"; c.fillRect(bw,bw*.75,w-bw*2,h-bw*1.5);
+      c.strokeStyle="#E2A32E"; c.lineWidth=5;
+      c.strokeRect(bw*.5,bw*.38,w-bw,h-bw*.76);
+      c.strokeRect(bw,bw*.75,w-bw*2,h-bw*1.5);
+      var i,j;
+      c.fillStyle="#E2A32E";
+      for(i=0;i<10;i++){
+        var yy=bw*.38+ (h-bw*.76)*(i/9);
+        dia(c,bw*.5,yy,10); dia(c,w-bw*.5,yy,10);
+      }
+      for(j=0;j<7;j++){ var xx=bw*.5+(w-bw)*(j/6); dia(c,xx,bw*.38,10); dia(c,xx,h-bw*.38,10); }
+      function dia(cc,x,y,r){cc.beginPath();cc.moveTo(x,y-r);cc.lineTo(x+r,y);cc.lineTo(x,y+r);cc.lineTo(x-r,y);cc.closePath();cc.fill();}
+      var cxs=[w*.5], cys=[h*.26,h*.5,h*.74];
+      for(i=0;i<cys.length;i++){
+        var y=cys[i];
+        c.fillStyle="#0E4A52"; dia(c,w*.5,y,w*.20);
+        c.fillStyle="#E9C97E"; dia(c,w*.5,y,w*.13);
+        c.fillStyle="#8E1F23"; dia(c,w*.5,y,w*.07);
+        c.fillStyle="#EFE0C4"; dia(c,w*.5,y,w*.028);
+      }
+      c.fillStyle="#EFE0C4";
+      for(i=0;i<9;i++){ dia(c,w*.24,h*(.1+i*.1),w*.03); dia(c,w*.76,h*(.1+i*.1),w*.03); }
+      c.fillStyle="#2E7C6E";
+      for(i=0;i<8;i++){ dia(c,w*.34,h*(.14+i*.105),w*.022); dia(c,w*.66,h*(.14+i*.105),w*.022); }
+    });
+  }
+
+  function lathe(profile,seg){
+    var pts=[],i;
+    for(i=0;i<profile.length;i++) pts.push(new THREE.Vector2(profile[i][0],profile[i][1]));
+    return new THREE.LatheGeometry(pts,seg||96);
+  }
+
+  var api={ready:false};
+  api.init=function(el,onFail){
+    if(!window.THREE){ onFail("Не удалось загрузить трёхмерную библиотеку. Остальные разделы работают."); return; }
+    var renderer;
+    try{ renderer=new THREE.WebGLRenderer({antialias:true,alpha:true}); }
+    catch(e){ onFail("Браузер не поддерживает WebGL — трёхмерный просмотр недоступен."); return; }
+    var W=el.clientWidth||600, H=el.clientHeight||520;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+    renderer.setSize(W,H);
+    renderer.outputEncoding=THREE.sRGBEncoding;
+    el.appendChild(renderer.domElement);
+
+    var scene=new THREE.Scene();
+    var camera=new THREE.PerspectiveCamera(38,W/H,.1,100);
+    camera.position.set(0,.25,4.6);
+
+    var envSrc=tex(512,256,function(c,w,h){
+      var g=c.createLinearGradient(0,0,0,h);
+      g.addColorStop(0,"#3A3550"); g.addColorStop(.42,"#F4E7CC"); g.addColorStop(.52,"#8D7F6A"); g.addColorStop(1,"#100C14");
+      c.fillStyle=g; c.fillRect(0,0,w,h);
+      c.fillStyle="rgba(255,246,222,.9)"; c.fillRect(w*.12,h*.16,w*.2,h*.16);
+      c.fillStyle="rgba(255,232,190,.5)"; c.fillRect(w*.62,h*.22,w*.16,h*.12);
+    });
+    envSrc.mapping=THREE.EquirectangularReflectionMapping;
+    var envRT=new THREE.WebGLCubeRenderTarget(256);
+    envRT.fromEquirectangularTexture(renderer,envSrc);
+    var env=envRT.texture;
+
+    scene.add(new THREE.HemisphereLight(0xEAD9B8,0x1A1420,.85));
+    var key=new THREE.DirectionalLight(0xFFF0D2,1.5); key.position.set(3,4.5,3.2); scene.add(key);
+    var rim=new THREE.DirectionalLight(0x9FD9D2,.7); rim.position.set(-3.4,1.2,-2.6); scene.add(rim);
+    var warm=new THREE.PointLight(0xE2A32E,.9,14); warm.position.set(-1.6,-1.2,2.4); scene.add(warm);
+
+    var pivot=new THREE.Group(); scene.add(pivot);
+
+    var mSilver=new THREE.MeshStandardMaterial({map:tuttaMap(),metalness:.94,roughness:.31,envMap:env,envMapIntensity:1.1});
+    mSilver.map.encoding=THREE.sRGBEncoding; mSilver.map.repeat.set(2.2,1);
+    var mClay=new THREE.MeshStandardMaterial({map:clayMap(),metalness:.04,roughness:.85,envMap:env,envMapIntensity:.35});
+    mClay.map.encoding=THREE.sRGBEncoding; mClay.map.repeat.set(1.6,1);
+    var mWood=new THREE.MeshStandardMaterial({map:woodMap(),metalness:.55,roughness:.42,envMap:env,envMapIntensity:.8});
+    mWood.map.encoding=THREE.sRGBEncoding; mWood.map.repeat.set(1.8,1);
+    var mCarpet=new THREE.MeshStandardMaterial({map:carpetMap(),metalness:.02,roughness:.95,side:THREE.DoubleSide,envMap:env,envMapIntensity:.2});
+    mCarpet.map.encoding=THREE.sRGBEncoding;
+
+    var objs={};
+
+    var jug=new THREE.Group();
+    jug.add(new THREE.Mesh(lathe([[0,-1.25],[.62,-1.25],[.66,-1.1],[.72,-.75],[.78,-.3],[.72,.15],[.5,.45],[.3,.62],[.26,.86],[.3,1.05],[.36,1.12],[.34,1.18],[.0,1.18]]),mSilver));
+    var handle=new THREE.Mesh(new THREE.TorusGeometry(.42,.055,16,60,Math.PI*1.15),mSilver);
+    handle.position.set(-.34,.25,0); handle.rotation.z=-.45; jug.add(handle);
+    var spout=new THREE.Mesh(new THREE.CylinderGeometry(.055,.08,.5,20),mSilver);
+    spout.position.set(.42,.55,0); spout.rotation.z=-.75; jug.add(spout);
+    objs.kubachi=jug;
+
+    var pot=new THREE.Group();
+    pot.add(new THREE.Mesh(lathe([[0,-1.0],[.5,-1.0],[.62,-.82],[.82,-.4],[.9,.02],[.82,.42],[.62,.68],[.52,.8],[.58,.92],[.56,.98],[0,.98]]),mClay));
+    var ear=new THREE.Mesh(new THREE.TorusGeometry(.24,.05,14,40,Math.PI*1.1),mClay);
+    ear.position.set(-.66,.3,0); ear.rotation.z=-.3; pot.add(ear);
+    var ear2=ear.clone(); ear2.position.x=.66; ear2.rotation.z=Math.PI+.3; pot.add(ear2);
+    objs.balkhar=pot;
+
+    var vase=new THREE.Group();
+    vase.add(new THREE.Mesh(lathe([[0,-1.2],[.42,-1.2],[.46,-1.05],[.5,-.5],[.46,.2],[.36,.75],[.3,1.05],[.36,1.2],[.34,1.26],[0,1.26]]),mWood));
+    var lid=new THREE.Mesh(new THREE.SphereGeometry(.14,24,18),mWood); lid.position.y=1.36; vase.add(lid);
+    objs.untsukul=vase;
+
+    var rug=new THREE.Group();
+    var pg=new THREE.PlaneGeometry(1.9,2.6,48,64);
+    var pos=pg.attributes.position;
+    for(var i=0;i<pos.count;i++){
+      var x=pos.getX(i), y=pos.getY(i);
+      pos.setZ(i, Math.sin(y*1.5)*.07 + Math.cos(x*2.1)*.045);
+    }
+    pg.computeVertexNormals();
+    var rugMesh=new THREE.Mesh(pg,mCarpet); rugMesh.rotation.x=-.12; rug.add(rugMesh);
+    objs.carpet=rug;
+
+    Object.keys(objs).forEach(function(k){ objs[k].visible=false; pivot.add(objs[k]); });
+
+    var state={rx:.12,ry:.5,tx:.12,ty:.5,dist:4.6,spin:true,cur:"kubachi"};
+    objs.kubachi.visible=true;
+
+    api.show=function(k){
+      Object.keys(objs).forEach(function(n){ objs[n].visible=(n===k); });
+      state.cur=k; state.tx=.12; state.ty=(k==="carpet")?0:.5;
+      state.dist=(k==="carpet")?4.2:4.6;
+    };
+    api.resize=function(){
+      var w=el.clientWidth,h=el.clientHeight; if(!w||!h) return;
+      camera.aspect=w/h; camera.updateProjectionMatrix(); renderer.setSize(w,h);
+    };
+    api.frame=function(dt){
+      if(state.spin) state.ty+=dt*.28;
+      state.rx+=(state.tx-state.rx)*.12;
+      state.ry+=(state.ty-state.ry)*.12;
+      pivot.rotation.x=state.rx; pivot.rotation.y=state.ry;
+      camera.position.z+=(state.dist-camera.position.z)*.12;
+      renderer.render(scene,camera);
+    };
+    api.state=state; api.objects=OBJECTS; api.ready=true;
+
+    var drag=null;
+    function down(e){ drag={x:e.clientX,y:e.clientY}; state.spin=false; el.classList.add("dragging"); el.setPointerCapture&&el.setPointerCapture(e.pointerId); }
+    function move(e){
+      if(!drag) return;
+      state.ty+=(e.clientX-drag.x)*.0075;
+      state.tx=Math.max(-1.1,Math.min(1.1,state.tx+(e.clientY-drag.y)*.006));
+      drag={x:e.clientX,y:e.clientY};
+    }
+    function up(){ drag=null; el.classList.remove("dragging"); }
+    el.addEventListener("pointerdown",down);
+    el.addEventListener("pointermove",move);
+    el.addEventListener("pointerup",up);
+    el.addEventListener("pointercancel",up);
+    el.addEventListener("pointerleave",up);
+    el.addEventListener("wheel",function(e){
+      e.preventDefault();
+      state.dist=Math.max(2.6,Math.min(7.5,state.dist+e.deltaY*.0035));
+    },{passive:false});
+    el.addEventListener("dblclick",function(){ state.spin=!state.spin; });
+    window.addEventListener("resize",api.resize);
+  };
+  api.list=OBJECTS;
+  return api;
+})();
+</script>
+
+<script>
+(function(){
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var deck=document.getElementById("deck");
+  var slides=[].slice.call(deck.querySelectorAll(".slide"));
+  var canvases=slides.map(function(s){return s.querySelector(".scene")});
+  var places=slides.map(function(s){return s.querySelector(".scene").dataset.place});
+  var railBtns=[].slice.call(document.querySelectorAll(".rail button"));
+  var thread=document.getElementById("thread");
+  var current=0, px=0, py=0, tpx=0, tpy=0;
+
+  /* ── плашки народов ─────────────────────────────────── */
+  var wrap=document.getElementById("peoples");
+  PEOPLES.forEach(function(p,i){
+    var b=document.createElement("button");
+    b.type="button"; b.className="chip"; b.textContent=p.n;
+    b.style.background=p.c;
+    if(["#C9455F","#7D6BC0","#5C9E6E","#6F97C7"].indexOf(p.c)>-1) b.style.color="#FFF6E8";
+    b.addEventListener("click",function(){ openFolio(i,b); });
+    wrap.appendChild(b);
+  });
+
+  /* ── слой народа ────────────────────────────────────── */
+  var folio=document.getElementById("folio"), folioIn=document.getElementById("folio-in"),
+      folioCv=document.getElementById("folio-canvas"), jump=document.getElementById("folio-jump");
+  var fIndex=-1, lastFocus=null;
+
+  PEOPLES.forEach(function(p,i){
+    var b=document.createElement("button");
+    b.type="button"; b.title=p.n; b.setAttribute("aria-label","Перейти: "+p.n); b.style.background="transparent";
+    b.addEventListener("click",function(){ openFolio(i); });
+    jump.appendChild(b);
+  });
+
+  function render(p){
+    var known=p.known.map(function(x){return "<span>"+x+"</span>"}).join("");
+    folioIn.innerHTML =
+      '<div class="folio-top"><span class="folio-badge" style="background:'+p.c+'"></span>'+
+      '<div><h2 class="engraved">'+p.n+'</h2><span class="selfname">самоназвание — '+p.self+'</span></div></div>'+
+      '<div class="meta">'+
+        '<div><b>'+p.num+'</b><span>численность в Дагестане</span></div>'+
+        '<div><b>'+p.share+'</b><span>доля населения республики</span></div>'+
+        '<div><b>'+p.fam+'</b><span>язык</span></div>'+
+      '</div>'+
+      '<p class="lede"><strong style="color:var(--gold);font-weight:600">Где живут.</strong> '+p.land+'</p>'+
+      '<div class="folio-body">'+
+        '<section><h3>История</h3><p>'+p.hist+'</p></section>'+
+        '<section><h3>Сегодня</h3><p>'+p.now+'</p></section>'+
+        '<section><h3>Чем известны</h3><div class="known">'+known+'</div></section>'+
+      '</div>'+
+      '<p style="font-size:12px;color:var(--silver-lo);max-width:60ch">Численность и доли приведены по итогам Всероссийской переписи населения 2021 года, округлённо.</p>';
+    [].forEach.call(jump.children,function(b,i){ b.setAttribute("aria-current", PEOPLES[i]===p ? "true":"false"); });
+    Scenes.draw(p.place,folioCv,0,0,0);
+  }
+  function openFolio(i,from){
+    fIndex=i; lastFocus=from||lastFocus;
+    folio.hidden=false; document.body.classList.add("locked");
+    render(PEOPLES[i]);
+    folio.scrollTop=0;
+    document.getElementById("f-close").focus();
+  }
+  function closeFolio(){
+    folio.hidden=true; fIndex=-1; document.body.classList.remove("locked");
+    if(lastFocus) lastFocus.focus();
+  }
+  function step(d){ if(fIndex<0) return; openFolio((fIndex+d+PEOPLES.length)%PEOPLES.length); }
+  document.getElementById("f-close").addEventListener("click",closeFolio);
+  document.getElementById("f-prev").addEventListener("click",function(){step(-1)});
+  document.getElementById("f-next").addEventListener("click",function(){step(1)});
+
+  /* ── вехи истории ───────────────────────────────────── */
+  [].forEach.call(document.querySelectorAll("#timeline .ev"),function(b){
+    b.addEventListener("click",function(){
+      var open=b.getAttribute("aria-expanded")==="true";
+      b.setAttribute("aria-expanded", open?"false":"true");
+    });
+  });
+
+  /* ── переключение вида на слайде «Земля» ────────────── */
+  var natureBtns=[].slice.call(document.querySelectorAll("#nature .nrow"));
+  natureBtns.forEach(function(b){
+    b.addEventListener("click",function(){
+      natureBtns.forEach(function(o){ o.setAttribute("aria-pressed", o===b ? "true":"false"); });
+      places[4]=b.dataset.place;
+      Scenes.draw(places[4],canvases[4],clock,px,py);
+    });
+  });
+
+  /* ── навигация по слайдам ───────────────────────────── */
+  function mark(i){
+    current=i;
+    railBtns.forEach(function(b,n){ b.setAttribute("aria-current", n===i?"true":"false"); });
+    thread.style.setProperty("--w", ((i+1)/slides.length*100)+"%");
+    document.body.classList.toggle("s2-active", i===1);
+  }
+  mark(0);
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting) mark(slides.indexOf(e.target)); });
+    },{root:deck,threshold:.55});
+    slides.forEach(function(s){ io.observe(s); });
+  }
+  function go(i){
+    i=Math.max(0,Math.min(slides.length-1,i));
+    slides[i].scrollIntoView({behavior:calm?"auto":"smooth",block:"start"});
+    mark(i);
+  }
+  railBtns.forEach(function(b){ b.addEventListener("click",function(){ go(+b.dataset.go); }); });
+
+  document.addEventListener("keydown",function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    if(!folio.hidden){
+      if(e.key==="Escape"){ e.preventDefault(); closeFolio(); }
+      else if(e.key==="ArrowRight"){ e.preventDefault(); step(1); }
+      else if(e.key==="ArrowLeft"){ e.preventDefault(); step(-1); }
+      return;
+    }
+    var tag=(e.target.tagName||"").toLowerCase();
+    if(e.key===" " && (tag==="button"||tag==="a")) return;
+    if(e.key==="ArrowRight"||e.key==="PageDown"||e.key===" "){ e.preventDefault(); go(current+1); }
+    else if(e.key==="ArrowLeft"||e.key==="PageUp"){ e.preventDefault(); go(current-1); }
+    else if(e.key==="ArrowDown"){ e.preventDefault(); go(current+1); }
+    else if(e.key==="ArrowUp"){ e.preventDefault(); go(current-1); }
+    else if(e.key==="Home"){ e.preventDefault(); go(0); }
+    else if(e.key==="End"){ e.preventDefault(); go(slides.length-1); }
+  });
+
+  /* ── медальон и параллакс ───────────────────────────── */
+  var med=document.getElementById("med");
+  if(!calm && window.matchMedia("(pointer:fine)").matches){
+    window.addEventListener("mousemove",function(ev){
+      tpx=(ev.clientX/window.innerWidth-.5)*2;
+      tpy=(ev.clientY/window.innerHeight-.5)*2;
+      if(med && current===0){
+        med.style.setProperty("--ry",(tpx*4.6).toFixed(2)+"deg");
+        med.style.setProperty("--rx",(-tpy*3.4).toFixed(2)+"deg");
+      }
+    });
+  }
+
+  /* ── трёхмерная мастерская ──────────────────────────── */
+  var viewer=document.getElementById("viewer"), no3d=document.getElementById("no3d"), objbar=document.getElementById("objbar");
+  var w3=document.getElementById("craft-where"), n3=document.getElementById("craft-name"), t3=document.getElementById("craft-text");
+  Workshop.init(viewer,function(msg){ no3d.textContent=msg; });
+  if(Workshop.ready){
+    no3d.remove();
+    Workshop.list.forEach(function(o,i){
+      var b=document.createElement("button");
+      b.type="button"; b.className="objbtn"; b.textContent=o.btn;
+      b.setAttribute("aria-pressed", i===0?"true":"false");
+      b.addEventListener("click",function(){
+        [].forEach.call(objbar.children,function(x){ x.setAttribute("aria-pressed","false"); });
+        b.setAttribute("aria-pressed","true");
+        Workshop.show(o.k);
+        w3.textContent=o.where; n3.textContent=o.name; t3.textContent=o.text;
+      });
+      objbar.appendChild(b);
+    });
+    if(calm) Workshop.state.spin=false;
+    setTimeout(Workshop.resize,60);
+  }
+
+  /* ── кадр ───────────────────────────────────────────── */
+  var clock=0, last=performance.now(), acc=0;
+  function drawAll(){
+    canvases.forEach(function(cv,i){ Scenes.draw(places[i],cv,clock,0,0); });
+    if(!folio.hidden && fIndex>=0) Scenes.draw(PEOPLES[fIndex].place,folioCv,clock,0,0);
+  }
+  drawAll();
+  window.addEventListener("resize",function(){ drawAll(); });
+
+  function loop(now){
+    var dt=Math.min((now-last)/1000,.05); last=now;
+    if(!calm){
+      clock+=dt; acc+=dt;
+      px+=(tpx-px)*.06; py+=(tpy-py)*.06;
+      if(acc>1/26){
+        acc=0;
+        if(!folio.hidden && fIndex>=0) Scenes.draw(PEOPLES[fIndex].place,folioCv,clock,px*.4,py*.4);
+        else Scenes.draw(places[current],canvases[current],clock,px,py);
+      }
+    }
+    if(Workshop.ready && folio.hidden && current===3) Workshop.frame(calm?0:dt);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
